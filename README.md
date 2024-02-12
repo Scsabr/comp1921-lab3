@@ -156,7 +156,7 @@ void getString(int max_length, char* destination)
 }
 ```
 
-You can see this is actually pretty straightforward - we need to add `int` to len because it's now a local variable, and change the variable name to match our arguments. Then we just replace the chunk of code in our main() and test it out:
+You can see this is actually pretty straightforward - we need to add `int` to the first use of len because it's now a local variable, and change the variable name to match our arguments. Then we just replace the chunk of code in our main() and test it out:
 
 ```c
     printf("Enter book title: ");
@@ -190,7 +190,7 @@ printf("Enter book title: ");
 strcpy(inventory[numBooks].title,getString(100);
 ```
 
-In this version, we dynamically allocate the string using `malloc()`. This is required because `char line[max_length];` clears after the function closes and will cause a segmentation fault.
+In this version, we dynamically allocate the string using `malloc()`. This is required because `char line[max_length];` clears after the function closes and will cause a segmentation fault. This is because when a function stops running (when it returns), it gets cleaned out of your memory to prevent memory leaks (more on that next week!) and all its local values are deleted. Dynamically allocated variables aren't deleted as you have to clear those manually with `free()`.
 
 Other than that, the changes are the same. The other key difference is how we call the function- we need to use `strcpy()`.
 
